@@ -327,7 +327,8 @@ namespace list {
      * @returns list object
      */
     //% block="$i1 || $i2 | $i3 | $i4 | $i5 | $i6 | $i7 | $i8 | $i9 | $i10"
-    //% expandableArgumentMode="toggle"
+    //% expandableArgumentMode=enabled
+    //% inlineInputMode=inline
     //% blockId=lists_create_from_items
     export function list_factory_items(
         i1?: any, i2?: any, i3?: any, i4?: any, i5?: any,
