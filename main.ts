@@ -3,7 +3,7 @@
  * Extension adding Python-like lists to MakeCode
  */
 //% color=#2a6cbd
-//% weight=0
+//% weight=100
 //% icon="\uf2b9"
 //% block="Lists"
 //% advanced=true
@@ -329,7 +329,6 @@ namespace list {
      * @item item to push to end of `list`
      */
     //% block="add $item to end of $list"
-    //% item.defl = "item"
     export function push(list: List, item: any): void {
         list.push(item);
     }
