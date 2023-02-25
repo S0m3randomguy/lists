@@ -326,8 +326,8 @@ namespace list {
      * @i1-i10 items to add to list
      * @returns list object
      */
-    //% block="$i1 || $i2 || $i3 || $i4 || $i5 || $i6 || $i7 || $i8 || $i9 || $i10 ||"
-    //% expandableArgumentMode="enabled"
+    //% block="$i1 || $i2 | $i3 | $i4 | $i5 | $i6 | $i7 | $i8 | $i9 | $i10"
+    //% expandableArgumentMode="toggle"
     //% blockId=lists_create_from_items
     export function list_factory_items(
         i1?: any, i2?: any, i3?: any, i4?: any, i5?: any,
@@ -348,7 +348,6 @@ namespace list {
     
     //% item.defl=item
     //% item.shadow=variables_get
-    //% list.shadow=
     export function push(list: List, item: any): void {
         list.push(item);
     }
