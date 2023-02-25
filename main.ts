@@ -330,6 +330,8 @@ namespace list {
     //% blockId=lists_create_from_items
     //% expandableArgumentMode=enabled
     //% inlineInputMode=inline
+    //% i1.defl=1 i2.defl=2 i3.defl=3 i4.defl=4 i5.defl=5
+    //% i6.defl=6 i7.defl=7 i8.defl=8 i9.defl=9 i10.defl=10
     export function list_factory_items(
         i1?: any, i2?: any, i3?: any, i4?: any, i5?: any,
         i6?: any, i7?: any, i8?: any, i9?: any, i10?: any
