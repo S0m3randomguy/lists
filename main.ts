@@ -308,11 +308,27 @@ namespace list {
         }
     }
 
+    /**
+     * Create list object from array
+     * Use this method to create list w/ more than 10 items
+     * @array array to convert into list
+     * @returns list object
+     */
+    //% block="create list from $array"
+    //% blockId=lists_create_from_array
     export function list_factory_array(array: Array<any>): List {
         let list = List.from_array(array);
         return list;
     }
 
+    /**
+     * Create list object from items (max. 10)
+     * @i1-i10 items to add to list
+     * @returns list object
+     */
+    //% block="$i1 || $i2 || $i3 || $i4 || $i5 || $i6 || $i7 || $i8 || $i9 || $i10 ||"
+    //% expandableArgumentMode="enabled"
+    //% blockId=lists_create_from_items
     export function list_factory_items(
         i1?: any, i2?: any, i3?: any, i4?: any, i5?: any,
         i6?: any, i7?: any, i8?: any, i9?: any, i10?: any
@@ -329,8 +345,10 @@ namespace list {
      * @item item to push to end of `list`
      */
     //% block="add $item to end of $list"
-    //% item.defl=someName
+    
+    //% item.defl=item
     //% item.shadow=variables_get
+    //% list.shadow=
     export function push(list: List, item: any): void {
         list.push(item);
     }
