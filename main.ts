@@ -116,13 +116,6 @@ namespace list {
             }
         }
 
-        /**
-         * Play an alarm sound for some time
-         * @param sound of the alarm to play
-         * @param duration of the alarm sound
-         */
-        //% block="add $item to end"
-        //% item.defl = "item"
         push(item: any): void {
             this.set(this.length, item);
         }
@@ -329,9 +322,15 @@ namespace list {
         )
         return list
     }
+
+    /**
+     * Push an item to the end of the list
+     * @list list object to push to
+     * @item item to push to end of `list`
+     */
+    //% block="add $item to end of $list"
+    //% item.defl = "item"
+    export function push(list: List, item: any): void {
+        list.push(item);
+    }
 }
-
-let mylist = list.list_factory_items("a", 0, null);
-let mylist2 = list.list_factory_items(mylist, mylist);
-
-let mylist3 = list.list_factory_items(mylist, mylist2);
