@@ -329,6 +329,8 @@ namespace list {
      * @item item to push to end of `list`
      */
     //% block="add $item to end of $list"
+    //% item.defl=someName
+    //% item.shadow=variables_get
     export function push(list: List, item: any): void {
         list.push(item);
     }
