@@ -326,10 +326,10 @@ namespace list {
      * @i1-i10 items to add to list
      * @returns list object
      */
-    //% block="$i1 || $i2 | $i3 | $i4 | $i5 | $i6 | $i7 | $i8 | $i9 | $i10"
+    //% block="empty list || $i1 | $i2 | $i3 | $i4 | $i5 | $i6 | $i7 | $i8 | $i9 | $i10"
+    //% blockId=lists_create_from_items
     //% expandableArgumentMode=enabled
     //% inlineInputMode=inline
-    //% blockId=lists_create_from_items
     export function list_factory_items(
         i1?: any, i2?: any, i3?: any, i4?: any, i5?: any,
         i6?: any, i7?: any, i8?: any, i9?: any, i10?: any
