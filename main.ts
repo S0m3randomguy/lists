@@ -4,7 +4,7 @@
  */
 //% color=#5ac44f 
 //% weight=0
-//% icon="\uf03a"
+//% icon="\uf2b9"
 //% block="Lists"
 //% advanced=true
 
