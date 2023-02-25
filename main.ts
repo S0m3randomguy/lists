@@ -2,7 +2,7 @@
 /**
  * Extension adding Python-like lists to MakeCode
  */
-//% color=#5ac44f 
+//% color=#2a6cbd
 //% weight=0
 //% icon="\uf2b9"
 //% block="Lists"
