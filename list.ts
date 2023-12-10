@@ -1,0 +1,8 @@
+
+namespace lists {
+
+    class List {
+        
+    }
+
+}
