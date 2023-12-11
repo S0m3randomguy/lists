@@ -12,7 +12,7 @@ namespace lists {
     const INVALID_INDEX = "Index must be non-negative integer";
     const OUT_OF_RANGE = "Index is out of list range";
     const EMPTY_LIST = "Operation can't be performed on empty list";
-    const INVALID_RANGE = "Start value must not exceed end value";
+    const INVALID_RANGE = "First index must not exceed second index";
 
     class List {
         items: {[key: number]: any};
@@ -82,7 +82,7 @@ namespace lists {
 
         /**
          * Get random item from list
-         * Throws INVALID_INDEX or INVALID_RANGE for invalid start or end arguments
+         * Throws INVALID_INDEX or OUT_OF_RANGE for invalid start or end arguments
          * Throws INVALID_RANGE if start value is higher than end value
          * Throws EMPTY_LIST if list is empty
          * @param start (optional) start of range; inclusive (defaults to 0)
@@ -132,6 +132,51 @@ namespace lists {
          */
         push(value: any): void {
             this.set(this.length, value);
+        }
+    	
+        /**
+         * Remove first occurence of an item from list
+         * @param value Value to remove
+         */
+        remove(value: any): void {
+            for (let i = 0; i < this.length; i++) {
+                if (this.get(i) === value) this.delete(i);
+                return;
+            }
+        }
+
+        /**
+         * Remove all occurences of item from list (unless `max` is specified)
+         * @param value Value to remove
+         * @param max Items to remove at most; no limit if 0 (defaults to 0)
+         */
+        removeAll(value: any, max: number=0): void {
+            let removed = 0;
+            for (let i = 0; i < this.length; i++) {
+                if (max > 0 && max >= removed) {
+                    return;
+                }
+
+                if (this.get(i) === value) {
+                    this.delete(i);
+                    removed += 1;
+                }
+            }
+        }
+
+        /**
+         * Swap two item positions in list
+         * Throws INVALID_INDEX or OUT_OF_RANGE for invalid first or other argument
+         * @param first Index of first item
+         * @param other Index of second item
+         */
+        swap(first: number, other: number): void {
+            first = this.verify(first);
+            other = this.verify(other);
+            
+            let item = this.get(first);
+            this.set(first, this.get(other));
+            this.set(other, item);
         }
 
         /**
