@@ -73,7 +73,7 @@ namespace lists {
          * Throws OUT_OF_RANGE if index is not in list range
          * @param T generic type to cast to
          * @param index Index to get
-         * @returns item at index cast to T type
+         * @returns Item at index cast to T type
          */
         get<T>(index: Integer): T {
             index = this.verify(index);
@@ -94,7 +94,7 @@ namespace lists {
             end = this.verify(end || this.length - 1);
 
             if (end < start) throw INVALID_RANGE;
-            if (this.length === 0) throw EMPTY_LIST;
+            if (this.isEmpty()) throw EMPTY_LIST;
             return this.get(Math.randomRange(start, end));
         }
 
@@ -130,6 +130,14 @@ namespace lists {
         inRange(index: Integer): boolean {
             if (!isInteger(index)) throw NON_INTEGER_INDEX;
             return index >= 0 && index < this.length;
+        }
+
+        /**
+         * Check if list is empty
+         * @returns true if list has no items
+         */
+        isEmpty(): boolean {
+            return this.length === 0;
         }
     }
 
