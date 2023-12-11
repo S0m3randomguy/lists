@@ -38,6 +38,14 @@ namespace lists {
             return value instanceof List;
         }
 
+        static fromArray(array: any[]): List {
+            let result = new List();
+            result.forEach((value, index) => {
+                result.push(array[index]);
+            })
+            return result;
+        }
+
         /**
          * Properties
          */
