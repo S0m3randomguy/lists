@@ -217,6 +217,15 @@ namespace lists {
         isEmpty(): boolean {
             return this.length === 0;
         }
-    }
 
+        /**
+         * Iterate through every list element
+         * @param handler (value, index) => void
+         */
+        forEach(handler: (value?: any, index?: number) => void) {
+            for (let i = 0; i < this.length; i++) {
+                handler(this.get(i), i);
+            }
+        }
+    }
 }
