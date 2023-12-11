@@ -55,6 +55,22 @@ namespace lists {
             if (!isInteger(index) || index < 0) throw INVALID_INDEX;
             return this.items[index] as T;
         }
+
+        /**
+         * Modify operations
+         * Methods that add, change or remove list items
+         */
+
+        /**
+         * Set item at given index to value
+         * @param T generic type to cast to
+         * @param index Index at which value is set
+         * @param value Element to set at index
+         */
+        set<T>(index: Integer, value: T) {
+            if (!isInteger(index) || index < 0) throw INVALID_INDEX;
+            this.items[index] = value;
+        }
     }
 
 }
