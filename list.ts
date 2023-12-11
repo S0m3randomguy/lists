@@ -30,11 +30,11 @@ namespace lists {
 
         /**
          * Check if value is of `List` type
-         * @param item Value to check
-         * @returns true if item is an instane of `List`
+         * @param value Value to check
+         * @returns true if value is an instane of `List`
          */
-        static isList(item: any): item is List {
-            return item instanceof List;
+        static isList(value: any): value is List {
+            return value instanceof List;
         }
 
         /**
@@ -124,6 +124,14 @@ namespace lists {
         delete(index: Integer): void {
             index = this.verify(index);
             delete this.items[index];
+        }
+
+        /**
+         * Add value to end of list
+         * @param value Value to append to list end
+         */
+        push(value: any): void {
+            this.set(this.length, value);
         }
 
         /**
