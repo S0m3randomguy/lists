@@ -68,7 +68,7 @@ namespace lists {
         }
 
         /**
-         * Get item at given index from list
+         * Get item at index from list
          * Throws INVALID_INDEX if index is not a non-negative integer
          * Throws OUT_OF_RANGE if index is not in list range
          * @param T generic type to cast to
@@ -110,9 +110,20 @@ namespace lists {
          * @param index Index at which value is set
          * @param value Element to set at index
          */
-        set<T>(index: Integer, value: T) {
+        set<T>(index: Integer, value: T): void {
             if (!isInteger(index) || index < 0) throw INVALID_INDEX;
             this.items[index] = value;
+        }
+
+        /**
+         * Delete item at index
+         * Throws INVALID_INDEX if index is not a non-negative integer
+         * Throws OUT_OF_RANGE if index is not in list range
+         * @param index Index to delete value at
+         */
+        delete(index: Integer): void {
+            index = this.verify(index);
+            delete this.items[index];
         }
 
         /**
