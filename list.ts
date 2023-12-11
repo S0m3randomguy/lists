@@ -38,7 +38,11 @@ namespace lists {
         /**
          * Properties
          */
-
+        
+        /**
+         * Get length of list
+         * @returns Number of items in list
+         */
         get length(): number {
             return Object.keys(this.items).length;
         }
@@ -50,6 +54,7 @@ namespace lists {
         
         /**
          * Get item at given index from list
+         * Throws INVALID_INDEX if the index is not a non-negative integer
          * @param T generic type to cast to
          * @param index Index to get
          * @returns item at index cast to T type
@@ -66,6 +71,7 @@ namespace lists {
 
         /**
          * Set item at given index to value
+         * Throws INVALID_INDEX if the index is not a non-negative integer
          * @param T generic type to cast to
          * @param index Index at which value is set
          * @param value Element to set at index
@@ -83,6 +89,7 @@ namespace lists {
 
         /**
          * Check if index is in range of list
+         * Throws NON_INTEGER_INDEX if the index is not an integer
          * @param index Index to compare
          * @returns true if index is above 0 and below the length of the list
          */
