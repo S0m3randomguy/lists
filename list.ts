@@ -133,6 +133,20 @@ namespace lists {
         push(value: any): void {
             this.set(this.length, value);
         }
+
+        /**
+         * Remove and return value from list at index
+         * Throws INVALID_INDEX if index is not a non-negative integer
+         * Throws OUT_OF_RANGE if index is not in list range
+         * @index Index of item to remove
+         * @returns Item in list at index
+         */
+        pop(index: Integer): any {
+            index = this.verify(index);
+            let item = this.get(index);
+            this.delete(index);
+            return item;
+        }
     	
         /**
          * Remove first occurence of an item from list
