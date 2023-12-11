@@ -1,13 +1,16 @@
 
 namespace lists {
 
+    // Integer type
     type Integer = number;
     function isInteger(value: number): value is Integer {
         return value === Math.floor(value);
     }
 
-    const INVALID_INDEX = "Only non-negative integer indexes are allowed";
-    const OUT_OF_RANGE = "Index is out of range";
+    // Error messages
+    const NON_INTEGER_INDEX = "Index must be integer";
+    const INVALID_INDEX = "Index must be non-negative integer";
+    const OUT_OF_RANGE = "Index is out of list range";
 
     class List {
         items: {[key: number]: any};
@@ -70,6 +73,22 @@ namespace lists {
         set<T>(index: Integer, value: T) {
             if (!isInteger(index) || index < 0) throw INVALID_INDEX;
             this.items[index] = value;
+        }
+
+        /**
+         * List operations
+         * Methods that return list data or performs
+         * operations on entire lists
+         */
+
+        /**
+         * Check if index is in range of list
+         * @param index Index to compare
+         * @returns true if index is above 0 and below the length of the list
+         */
+        inRange(index: Integer): boolean {
+            if (!isInteger(index)) throw NON_INTEGER_INDEX;
+            return index >= 0 && index < this.length;
         }
     }
 
