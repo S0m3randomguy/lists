@@ -11,6 +11,8 @@ namespace lists {
     const NON_INTEGER_INDEX = "Index must be integer";
     const INVALID_INDEX = "Index must be non-negative integer";
     const OUT_OF_RANGE = "Index is out of list range";
+    const EMPTY_LIST = "Operation can't be performed on empty list";
+    const INVALID_RANGE = "Start value must not exceed end value";
 
     class List {
         items: {[key: number]: any};
@@ -53,15 +55,47 @@ namespace lists {
          */
         
         /**
+         * Check if index is valid (internal method)
+         * Throws INVALID_INDEX if index is not a non-negative integer
+         * Throws OUT_OF_RANGE if index is not in list range
+         * @param index Index to check
+         * @returns index if index is valid
+         */
+        private verify(index: Integer): Integer {
+            if (!isInteger(index) || index < 0) throw INVALID_INDEX;
+            if (this.inRange(index)) throw OUT_OF_RANGE;
+            return index;
+        }
+
+        /**
          * Get item at given index from list
-         * Throws INVALID_INDEX if the index is not a non-negative integer
+         * Throws INVALID_INDEX if index is not a non-negative integer
+         * Throws OUT_OF_RANGE if index is not in list range
          * @param T generic type to cast to
          * @param index Index to get
          * @returns item at index cast to T type
          */
         get<T>(index: Integer): T {
-            if (!isInteger(index) || index < 0) throw INVALID_INDEX;
+            index = this.verify(index);
             return this.items[index] as T;
+        }
+
+        /**
+         * Get random item from list
+         * Throws INVALID_INDEX or INVALID_RANGE for invalid start or end arguments
+         * Throws INVALID_RANGE if start value is higher than end value
+         * Throws EMPTY_LIST if list is empty
+         * @param start (optional) start of range; inclusive (defaults to 0)
+         * @param end (optional) end of range; inclusive (defaults to length of list - 1)
+         * @returns Random item from list within range
+         */
+        random(start?: number, end?: number): any {
+            start = this.verify(start || 0);
+            end = this.verify(end || this.length - 1);
+
+            if (end < start) throw INVALID_RANGE;
+            if (this.length === 0) throw EMPTY_LIST;
+            return this.get(Math.randomRange(start, end));
         }
 
         /**
@@ -71,7 +105,7 @@ namespace lists {
 
         /**
          * Set item at given index to value
-         * Throws INVALID_INDEX if the index is not a non-negative integer
+         * Throws INVALID_INDEX if index is not a non-negative integer
          * @param T generic type to cast to
          * @param index Index at which value is set
          * @param value Element to set at index
@@ -89,7 +123,7 @@ namespace lists {
 
         /**
          * Check if index is in range of list
-         * Throws NON_INTEGER_INDEX if the index is not an integer
+         * Throws NON_INTEGER_INDEX if index is not an integer
          * @param index Index to compare
          * @returns true if index is above 0 and below the length of the list
          */
