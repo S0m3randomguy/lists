@@ -1,6 +1,10 @@
 
 namespace lists {
 
+    interface IList {
+        [key: number]: any;
+    }
+
     // Integer type
     type Integer = number;
     function isInteger(value: number): value is Integer {
@@ -15,13 +19,10 @@ namespace lists {
     const INVALID_RANGE = "First index must not exceed second index";
 
     class List {
-        items: {[key: number]: any};
+        items: IList;
 
-        constructor(array?: any[]) {
-            if (!array) return;
-            array.forEach((value, index) => {
-                this.items[index] = value;
-            })
+        constructor(items?: IList) {
+            this.items = items || {};
         }
 
         /**
@@ -222,10 +223,18 @@ namespace lists {
          * Iterate through every list element
          * @param handler (value, index) => void
          */
-        forEach(handler: (value?: any, index?: number) => void) {
+        forEach(handler: (value?: any, index?: number) => void): void {
             for (let i = 0; i < this.length; i++) {
                 handler(this.get(i), i);
             }
+        }
+
+        /**
+         * Creates a copy of the list
+         * @retuns New list instance with identical items
+         */
+        copy(): List {
+            return new List(this.items);
         }
     }
 }
