@@ -75,7 +75,7 @@ namespace lists {
          * @param index Index to check
          * @returns index if index is valid
          */
-        private verify(index: Integer): Integer {
+        verify(index: Integer): Integer {
             if (!isInteger(index) || index < 0) throw INVALID_INDEX;
             if (!this.inRange(index)) throw OUT_OF_RANGE;
             return index;
