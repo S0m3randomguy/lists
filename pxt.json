@@ -12,7 +12,9 @@
         "list.ts",
         "test.ts"
     ],
-    "testFiles": [],
+    "testFiles": [
+        "test.ts"
+    ],
     "targetVersions": {
         "target": "1.12.46",
         "targetId": "arcade"
