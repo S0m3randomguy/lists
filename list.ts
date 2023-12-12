@@ -12,13 +12,13 @@ namespace lists {
     }
 
     // Error messages
-    const NON_INTEGER_INDEX = "Index must be integer";
-    const INVALID_INDEX = "Index must be non-negative integer";
-    const OUT_OF_RANGE = "Index is out of list range";
-    const EMPTY_LIST = "Operation can't be performed on empty list";
-    const INVALID_RANGE = "First index must not exceed second index";
+    export const NON_INTEGER_INDEX = "Index must be integer";
+    export const INVALID_INDEX = "Index must be non-negative integer";
+    export const OUT_OF_RANGE = "Index is out of list range";
+    export const EMPTY_LIST = "Operation can't be performed on empty list";
+    export const INVALID_RANGE = "First index must not exceed second index";
 
-    class List {
+    export class List {
         items: IList;
 
         constructor(items?: IList) {
@@ -40,8 +40,8 @@ namespace lists {
 
         static fromArray(array: any[]): List {
             let result = new List();
-            result.forEach((value, index) => {
-                result.push(array[index]);
+            array.forEach((value) => {
+                result.push(value);
             })
             return result;
         }
@@ -72,7 +72,7 @@ namespace lists {
          */
         private verify(index: Integer): Integer {
             if (!isInteger(index) || index < 0) throw INVALID_INDEX;
-            if (this.inRange(index)) throw OUT_OF_RANGE;
+            if (!this.inRange(index)) throw OUT_OF_RANGE;
             return index;
         }
 

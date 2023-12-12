@@ -2,7 +2,8 @@
     "name": "Lists",
     "description": "",
     "dependencies": {
-        "device": "*"
+        "device": "*",
+        "Tests": "github:s0m3randomguy/tests#12076584c3701b38b7a73bd6b66bbae63b93beb5"
     },
     "files": [
         "main.ts",
@@ -11,9 +12,7 @@
         "list.ts",
         "test.ts"
     ],
-    "testFiles": [
-        "test.ts"
-    ],
+    "testFiles": [],
     "targetVersions": {
         "target": "1.12.46",
         "targetId": "arcade"
