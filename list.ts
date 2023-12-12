@@ -38,6 +38,11 @@ namespace lists {
             return value instanceof List;
         }
 
+        /**
+         * Create List object from array
+         * @param array Array of `any` type
+         * @returns List object
+         */
         static fromArray(array: any[]): List {
             let result = new List();
             array.forEach((value) => {
