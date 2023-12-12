@@ -103,12 +103,12 @@ namespace lists {
          * @param end (optional) end of range; inclusive (defaults to length of list - 1)
          * @returns Random item from list within range
          */
-        random(start?: number, end?: number): any {
-            start = this.verify(start || 0);
+        random(start: number=0, end?: number): any {
+            if (this.isEmpty()) throw EMPTY_LIST;
+            start = this.verify(start);
             end = this.verify(end || this.length - 1);
 
             if (end < start) throw INVALID_RANGE;
-            if (this.isEmpty()) throw EMPTY_LIST;
             return this.get(Math.randomRange(start, end));
         }
 
