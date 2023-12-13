@@ -1,4 +1,6 @@
 
+tests.LOGGING = false;
+
 // Test isList
 let list = new lists.List();
 new tests.AssertTrue(lists.List.isList(list));
@@ -8,12 +10,13 @@ new tests.AssertFalse(lists.List.isList(0));
 let array = [1, "2", true];
 list = lists.List.fromArray(array);
 
-for (let i = 0; i < 3; i++) {
-    new tests.AssertEqual(list.get(i), array[i]);
-}
+new tests.AssertEqual(list.get(0), array[0]);
+new tests.AssertEqual(list.get(1), array[1]);
+new tests.AssertEqual(list.get(2), array[2]);
 
 // Test length
-list = lists.List.fromArray([1, 2, 3]);
+array = [1, 2, 3];
+list = lists.List.fromArray(array);
 new tests.AssertEqual(list.length, 3);
 
 // Test verify
@@ -40,4 +43,6 @@ new tests.AssertRaises(() => list.random(0, 3), lists.OUT_OF_RANGE);
 
 new tests.AssertRaises(() => list.random(2, 1), lists.INVALID_RANGE);
 new tests.AssertRaises(() => new lists.List().random(), lists.EMPTY_LIST);
-//new tests.AssertIn(list.random(), array);
+
+let result = list.random();
+new tests.AssertIn(result, array);

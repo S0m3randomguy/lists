@@ -3,7 +3,7 @@
     "description": "",
     "dependencies": {
         "device": "*",
-        "Tests": "github:s0m3randomguy/tests#12076584c3701b38b7a73bd6b66bbae63b93beb5"
+        "Tests": "github:s0m3randomguy/tests#543b4705c7485e7dee84ddf6948f75c5aeffd449"
     },
     "files": [
         "main.ts",
