@@ -46,3 +46,24 @@ new tests.AssertRaises(() => new lists.List().random(), lists.EMPTY_LIST);
 
 let result = list.random();
 new tests.AssertIn(result, array);
+
+// Test set
+new tests.AssertRaises(() => list.set(-1, 0), lists.INVALID_INDEX);
+new tests.AssertRaises(() => list.set(1.5, 0), lists.INVALID_INDEX);
+
+list.set(2, 10);
+list.set(3, 20);
+new tests.AssertEqual(list.get(2), 10);
+new tests.AssertEqual(list.get(3), 20);
+
+// Test delete
+new tests.AssertRaises(() => list.delete(-1), lists.INVALID_INDEX);
+new tests.AssertRaises(() => list.delete(1.5), lists.INVALID_INDEX);
+new tests.AssertRaises(() => list.delete(4), lists.OUT_OF_RANGE);
+
+list.delete(3);
+new tests.AssertIsUndefined(list.items[3]);
+
+// Test push
+list.push(100);
+new tests.AssertEqual(list.get(3), 100);
