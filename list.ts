@@ -19,6 +19,11 @@ namespace lists {
     export const INVALID_RANGE = "First index must not exceed second index";
     export const INVALID_LENGTH = "Length must be non-negative integer";
 
+    enum FlushMode {
+        Added,
+        Removed
+    }
+
     export class List {
         items: IList;
 
@@ -76,10 +81,33 @@ namespace lists {
          * @param index Index to check
          * @returns index if index is valid
          */
-        verify(index: Integer): Integer {
+        protected verify(index: Integer): Integer {
             if (!isInteger(index) || index < 0) throw INVALID_INDEX;
             if (!this.inRange(index)) throw OUT_OF_RANGE;
             return index;
+        }
+
+        /**
+         * Flush list items (internal method)
+         * Throws INVALID_INDEX if index is not a non-negative integer
+         * Throws OUT_OF_RANGE if index is not in list range
+         * @param index Origin index
+         * @param mode Flush mode (Added/Removed)
+         */
+        protected flush(index: Integer, mode: FlushMode): void {
+            index = this.verify(index);
+            if (mode === FlushMode.Added) {
+                let biggest = this.length - 1;
+                for (let i = 0; biggest > i; i--) {
+                    this.set(i, undefined);
+                }
+            } else if (mode === FlushMode.Removed) {
+                let copy = this.copy();
+                let items = copy.items;
+                for (let i = index + 1; i < copy.length; i++) {
+                    this.items[i - 1] = items[i];
+                }
+            }
         }
 
         /**
@@ -176,6 +204,7 @@ namespace lists {
         set<T>(index: Integer, value: T): void {
             if (!isInteger(index) || index < 0) throw INVALID_INDEX;
             this.items[index] = value;
+            this.flush(index, FlushMode.Added);
         }
 
         /**
@@ -187,6 +216,7 @@ namespace lists {
         delete(index: Integer): void {
             index = this.verify(index);
             delete this.items[index];
+            this.flush(index, FlushMode.Removed);
         }
 
         /**
