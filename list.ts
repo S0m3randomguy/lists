@@ -17,6 +17,7 @@ namespace lists {
     export const OUT_OF_RANGE = "Index is out of list range";
     export const EMPTY_LIST = "Operation can't be performed on empty list";
     export const INVALID_RANGE = "First index must not exceed second index";
+    export const INVALID_LENGTH = "Length must be non-negative integer";
 
     export class List {
         items: IList;
@@ -110,6 +111,45 @@ namespace lists {
 
             if (end < start) throw INVALID_RANGE;
             return this.get(Math.randomRange(start, end));
+        }
+
+        /**
+         * Find first occurrence of item in list
+         * @param item Value to find
+         * @returns index of item or -1 if item is not found
+         */
+        find(item: any): Integer {
+            let index = -1;
+            for (let i = 0; i < this.length; i++) {
+                if (this.get(i) === item) {
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        }
+
+        /**
+         * Find multiple occurrences of item in list
+         * @param item Value to find
+         * @param max Max number of occurences to return (0 is infinite; defaults to 0)
+         * @returns List of item indicies in the list
+         */
+        findAll(item: any, max: number=0): List {
+            if (!isInteger(max) || max < 0) {
+                throw INVALID_LENGTH;
+            }
+
+            let result = new List();
+            for (let i = 0; i < this.length; i++) {
+                if (this.get(i) === item) {
+                    result.push(i);
+                }
+                if (max > 0 && result.length >= max) {
+                    break;
+                }
+            }
+            return result;
         }
 
         /**
