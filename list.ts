@@ -153,6 +153,15 @@ namespace lists {
         }
 
         /**
+         * Return number of item occurrences in list
+         * @param item Value to count
+         * @returns Number of occurrences
+         */
+        count(item: any): Integer {
+            return this.findAll(item).length;
+        }
+
+        /**
          * Modify operations
          * Methods that add, change or remove list items
          */
