@@ -58,22 +58,9 @@ namespace lists {
         }
 
         /**
-         * Properties
+         * Protected internal methods
          */
-        
-        /**
-         * Get length of list
-         * @returns Number of items in list
-         */
-        get length(): number {
-            return Object.keys(this.items).length;
-        }
 
-        /**
-         * Read operations
-         * Methods that access list items
-         */
-        
         /**
          * Check if index is valid (internal method)
          * Throws INVALID_INDEX if index is not a non-negative integer
@@ -109,6 +96,23 @@ namespace lists {
                 }
             }
         }
+
+        /**
+         * Properties
+         */
+        
+        /**
+         * Get length of list
+         * @returns Number of items in list
+         */
+        get length(): number {
+            return Object.keys(this.items).length;
+        }
+
+        /**
+         * Read operations
+         * Methods that access list items
+         */
 
         /**
          * Get item at index from list
